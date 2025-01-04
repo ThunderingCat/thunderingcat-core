@@ -1,7 +1,7 @@
 // ignore_for_file: unintended_html_in_doc_comment
 
 import 'package:thunderingcat_core/base/unique.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 /// [Broadcast] 广播类及相关类型定义
 
@@ -146,11 +146,16 @@ class BroadcastEvent<T> extends BroadcastEventInterface<T> {
 
   BroadcastEvent({String? name, this.single = false}) : super(name: name != null ? '${name}_${Unique.id()}' : null);
 
+  _log(String msg) {
+    debugPrint('【BroadcastEventInterface:$name】 $msg');
+  }
+
   /// [发送事件]
   @override
   void emit(T? data) {
     if (_disposed) {
-      return debugPrint('[BroadcastEvent:$name] has been disposed,should not send event again');
+      _log('has been disposed,should not send event again');
+      return;
     }
     super.emit(data);
   }
@@ -159,7 +164,7 @@ class BroadcastEvent<T> extends BroadcastEventInterface<T> {
   @override
   BroadcastSubscription? addListener(void Function(T? data) callback) {
     if (_disposed) {
-      debugPrint('[BroadcastEventInterface:$name] has been disposed,should not add listener again');
+      _log('has been disposed,should not add listener again');
       return null;
     }
     return Broadcast.addListener(name, callback as dynamic, single: single);
@@ -168,7 +173,8 @@ class BroadcastEvent<T> extends BroadcastEventInterface<T> {
   /// [移除事件]
   void dispose() {
     if (_disposed) {
-      return debugPrint('[BroadcastEventInterface:$name] has been disposed,should not dispose again');
+      _log('has been disposed,should not dispose again');
+      return;
     }
     _disposed = true;
     Broadcast.removeAllListeners(name);
