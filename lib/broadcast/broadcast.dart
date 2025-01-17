@@ -38,6 +38,7 @@ class Broadcast {
     }
   }
 
+  /// used to listen events inherited from [GlobalBroadcastEventInterface]
   static BroadcastSubscription addEventListener<E>(void Function(E event) listener, {String? name}) {
     return _shared._addListener(name ?? E.toString(), listener as dynamic, false);
   }
