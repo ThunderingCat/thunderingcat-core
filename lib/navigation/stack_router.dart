@@ -455,7 +455,7 @@ class _DefaultUnknownPage extends StatelessWidget {
 /// Get the built page through [StackPageState.page] and call its [StackPageController.onInitialize]
 abstract class StackPageState<W extends StatefulWidget, C extends StackPageController> extends State<W> {
   StackRouterDelegate get delegator {
-    final delegator = Injex.take<StackRouterDelegate>();
+    final delegator = Injex.get<StackRouterDelegate>();
     assert(delegator != null, 'StackRouterDelegate Not Found,Please Ensure (Navigation) Is Configured Correctly');
     return delegator!;
   }

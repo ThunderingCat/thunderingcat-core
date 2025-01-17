@@ -31,8 +31,8 @@ class Injex {
     Injex._shared._putLater<D>(factory, tag: tag);
   }
 
-  static D? take<D>({String? tag, D Function()? factory}) {
-    return Injex._shared._take<D>(tag: tag ?? D.toString(), factory: factory);
+  static D? get<D>({String? tag, D Function()? factory}) {
+    return Injex._shared._get<D>(tag: tag ?? D.toString(), factory: factory);
   }
 
   static void remove<D>({String? tag, D? target, bool keepFactory = false}) {
@@ -110,7 +110,7 @@ class Injex {
     _factories[k] = _Factory(tag: k, factory: factory);
   }
 
-  D? _take<D>({required String tag, D Function()? factory}) {
+  D? _get<D>({required String tag, D Function()? factory}) {
     final k = tag;
     final obj = _map[k];
     if (obj != null) {
