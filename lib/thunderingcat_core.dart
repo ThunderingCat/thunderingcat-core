@@ -1,4 +1,5 @@
-library;
+// ignore: unnecessary_library_name
+library thunderingcat_core;
 
 export './base/unique.dart';
 export './broadcast/broadcast.dart';
