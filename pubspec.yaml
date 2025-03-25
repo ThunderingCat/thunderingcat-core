@@ -1,6 +1,6 @@
 name: thunderingcat_core
 description: "core library for thunderingcat"
-version: 0.0.1
+version: 1.0.0
 homepage: https://github.com/ThunderingCat/thunderingcat-core
 
 environment:
