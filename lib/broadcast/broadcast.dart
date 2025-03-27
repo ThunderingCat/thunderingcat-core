@@ -117,7 +117,9 @@ abstract class BroadcastEventInterface<T> {
     Broadcast.emit(name: name, data: data);
   }
 
-  BroadcastSubscription? addListener(void Function(T? data) callback);
+  BroadcastSubscription? addListener(void Function(T? data) callback) {
+    return Broadcast.addListener(name, callback as dynamic);
+  }
 }
 
 /// [BroadcastEvent]
