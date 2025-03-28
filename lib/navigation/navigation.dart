@@ -92,6 +92,16 @@ class Navigation {
     }
   }
 
+  /// [Overlay Actions]
+  ///
+  static void insert(
+    OverlayEntry entry, {
+    OverlayEntry? above,
+    OverlayEntry? below,
+  }) {
+    _stackRouter?.insert(entry, above: above, below: below);
+  }
+
   /// [Tab Navigation Actions]
   ///
   static Future<int?> setNewTabIndex(int index) async {
